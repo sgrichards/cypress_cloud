@@ -36,6 +36,7 @@ jobs:
           DRUPAL_PWD: admin
           BUILD_ID: ${{ env.GITHUB_RUN_ID }}
           BUILD_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
+          PIPELINE_ENV: github
 
       - name: Run our scripts
         run: |
