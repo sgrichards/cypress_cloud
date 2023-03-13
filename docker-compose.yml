@@ -20,6 +20,7 @@ services:
             - MYSQL_DATABASE
             - MYSQL_USER
             - MYSQL_PASSWORD
+            - MARIADB_ROOT_PASSWORD
             - DRUPAL_USER
             - DRUPAL_PWD
             - PIPELINE_ENV
@@ -38,4 +39,4 @@ services:
             - MYSQL_DATABASE
             - MYSQL_USER
             - MYSQL_PASSWORD
-            - MYSQL_ROOT_PASSWORD
+            - MARIADB_ROOT_PASSWORD

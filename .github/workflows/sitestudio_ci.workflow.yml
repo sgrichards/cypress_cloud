@@ -31,7 +31,7 @@ jobs:
           MYSQL_DATABASE: drupal
           MYSQL_USER: drupal
           MYSQL_PASSWORD: drupal
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MARIADB_ROOT_PASSWORD: ${{ secrets.MARIADB_ROOT_PASSWORD }}
           DRUPAL_USER: admin
           DRUPAL_PWD: admin
           BUILD_ID: ${{ env.GITHUB_RUN_ID }}
