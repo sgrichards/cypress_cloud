@@ -36,6 +36,10 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      - name: Composer config
+        run: |
+          composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+
       - name: Composer require Drupal core
         run: |
           composer require drupal/core:${{ matrix.drupal-core }}
