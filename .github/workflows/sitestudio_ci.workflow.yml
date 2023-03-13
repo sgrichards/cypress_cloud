@@ -12,52 +12,16 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        drupal-core: ['^9.5', '^10']
+        drupal-core: ['9.5', '10']
         php-versions: ['8.0', '8.1']
-    services:
-      mariadb:
-        image: mariadb:10.9
-        env:
-          MYSQL_USER: drupal
-          MYSQL_PASSWORD: drupal
-          MYSQL_DATABASE: drupal
-          MYSQL_ROOT_PASSWORD: drupal
-        ports:
-          - 3306:3306
 
     steps:
-      - name: Checkout Drupal core
-        uses: actions/checkout@v3
-
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
+      - uses: actions/checkout@v3
+      - uses: isbang/compose-action@v1.4.1
         with:
-          php-version: ${{ matrix.php-versions }}
-          coverage: none
-
-      - name: Get composer cache directory
-        id: composercache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Cache composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composercache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
-      - name: Composer config
-        run: |
-          composer config github-oauth.github.com ${{ secrets.GH_TOKEN }}
-
-      - name: Composer require Drupal core
-        run: |
-          composer require drupal/core:${{ matrix.drupal-core }}
-
-      - name: Install Drupal core dependencies
-        run: |
-          composer --no-interaction --no-progress --prefer-dist --optimize-autoloader install
-
-      - name: Install Drupal
-        run: |
-          vendor/bin/drush -y -v site-install cohesion_install --db-url="mysql://drupal:drupal@mariadb:3306/drupal" --account-pass=t3st3r
+          compose-file: "./docker-compose.yml"
+        env:
+          PHP_VERSION: ${{ matrix.php-version }}
+          COHESION_VERSION: 7.0.x
+          DRUPAL_VERSION: ${{ matrix.drupal-core }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

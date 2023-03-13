@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+    web:
+        build:
+            context: drupal
+            args:
+                PHP_VERSION: ${PHP_VERSION}
+                COHESION_VERSION: ${COHESION_VERSION}
+                DRUPAL_VERSION: ${DRUPAL_VERSION}
+                GH_TOKEN: ${GH_TOKEN}
+        ports:
+            - "8008:80"
+        links:
+            - database
+        volumes:
+            - ${PWD}/logs:/opt/drupal/logs
+        environment:
+            - COH_API_KEY
+            - COH_ORG_KEY
+            - COH_API_URL
+            - MYSQL_DATABASE
+            - MYSQL_USER
+            - MYSQL_PASSWORD
+            - DRUPAL_USER
+            - DRUPAL_PWD
+            - PIPELINE_ENV
+            - PHP_VERSION
+            - COHESION_VERSION
+            - DRUPAL_VERSION
+            - BUILD_ID
+            - BUILD_NUMBER
+            - GH_TOKEN
+    database:
+        image: mariadb:10.5
+        restart: on-failure
+        ports:
+            - "3307:3306"
+        environment:
+            - MYSQL_DATABASE
+            - MYSQL_USER
+            - MYSQL_PASSWORD
+            - MYSQL_ROOT_PASSWORD
