@@ -34,8 +34,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
           DRUPAL_USER: admin
           DRUPAL_PWD: admin
-          BUILD_ID: ${{ GITHUB_RUN_ID }}
-          BUILD_NUMBER: ${{ GITHUB_RUN_NUMBER }}
+          BUILD_ID: ${{ env.GITHUB_RUN_ID }}
+          BUILD_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
 
       - name: Run our scripts
         run: |
