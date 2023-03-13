@@ -21,7 +21,7 @@ jobs:
         with:
           compose-file: "./docker-compose.yml"
         env:
-          PHP_VERSION: ${{ matrix.php-version }}
+          PHP_VERSION: ${{ matrix.php-versions }}
           COHESION_VERSION: 7.0.x
           DRUPAL_VERSION: ${{ matrix.drupal-core }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
