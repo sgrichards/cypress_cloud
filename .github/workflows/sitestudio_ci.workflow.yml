@@ -25,3 +25,18 @@ jobs:
           COHESION_VERSION: 7.0.x
           DRUPAL_VERSION: ${{ matrix.drupal-core }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          COH_API_KEY: ${{ secrets.COH_API_KEY }}
+          COH_ORG_KEY: ${{ secrets.COH_ORG_KEY }}
+          COH_API_URL: https://eu-development-api.sitestudio.acquia.com
+          MYSQL_DATABASE: drupal
+          MYSQL_USER: drupal
+          MYSQL_PASSWORD: drupal
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          DRUPAL_USER: admin
+          DRUPAL_PWD: admin
+          BUILD_ID: ${{ GITHUB_RUN_ID }}
+          BUILD_NUMBER: ${{ GITHUB_RUN_NUMBER }}
+
+      - name: Run our scripts
+        run: |
+          docker compose exec -T web bash ./run.sh
