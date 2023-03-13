@@ -1,11 +1,11 @@
-ARG PHP_VERSION=8.1
-ARG DRUPAL_VERSION=9.5
+ARG PHP_VERSION
+ARG DRUPAL_VERSION
 
 FROM drupal:${DRUPAL_VERSION}-php${PHP_VERSION}-apache
 
 RUN apt-get -y update && apt-get -y install git sudo vim mariadb-client time
 
-ARG COHESION_VERSION=7.0.x
+ARG COHESION_VERSION
 ARG GH_TOKEN
 
 WORKDIR /opt/drupal/
