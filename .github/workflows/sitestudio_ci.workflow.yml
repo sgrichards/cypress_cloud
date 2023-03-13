@@ -38,7 +38,7 @@ jobs:
 
       - name: Composer config
         run: |
-          composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+          composer config github-oauth.github.com ${{ secrets.GH_TOKEN }}
 
       - name: Composer require Drupal core
         run: |
