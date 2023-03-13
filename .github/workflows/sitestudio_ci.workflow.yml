@@ -10,7 +10,7 @@ jobs:
     name: Drupal ${{ matrix.drupal-core }} - PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         drupal-core: ['9.5', '10']
         php-versions: ['8.0', '8.1']
