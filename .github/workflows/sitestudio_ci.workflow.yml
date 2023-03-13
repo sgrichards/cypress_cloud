@@ -10,10 +10,20 @@ jobs:
     name: Drupal ${{ matrix.drupal-core }} - PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         drupal-core: ['^9.5', '^10']
         php-versions: ['8.0', '8.1']
+    services:
+      mariadb:
+        image: mariadb:10.9
+        env:
+          MYSQL_USER: drupal
+          MYSQL_PASSWORD: drupal
+          MYSQL_DATABASE: drupal
+          MYSQL_ROOT_PASSWORD: drupal
+        ports:
+          - 3306:3306
 
     steps:
       - name: Checkout Drupal core
@@ -48,3 +58,6 @@ jobs:
         run: |
           composer --no-interaction --no-progress --prefer-dist --optimize-autoloader install
 
+      - name: Install Drupal
+        run: |
+          vendor/bin/drush -y -v site-install cohesion_install --db-url="mysql://drupal:drupal@mariadb:3306/drupal" --account-pass=t3st3r
