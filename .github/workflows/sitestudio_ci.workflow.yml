@@ -46,4 +46,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          spec: e2e/cypress/e2e/drupal.cy.js
+          spec: cypress/e2e/drupal.cy.js
