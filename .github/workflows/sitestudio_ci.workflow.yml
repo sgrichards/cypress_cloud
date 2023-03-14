@@ -41,3 +41,8 @@ jobs:
       - name: Run our scripts
         run: |
           docker compose exec -T web bash ./run.sh
+          if [ $? -gt 0 ]; then
+            printf "Failure\n"
+            exit 1
+          fi
+
