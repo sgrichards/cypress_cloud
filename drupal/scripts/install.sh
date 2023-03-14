@@ -18,5 +18,7 @@ if [ ! -f "/opt/drupal/web/sites/default/settings.php" ]; then
 
     echo "Site Studio setup...\n"
     drush --root=${DRUPAL_ROOT} en sitestudio_uikit --debug -y -v
-    drush --root=/opt/drupal/web cohesion:import -v
+    drush --root=${DRUPAL_ROOT} cohesion:import -v
+
+    drush --root=${DRUPAL_ROOT} status
 fi
