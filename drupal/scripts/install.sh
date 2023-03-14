@@ -4,6 +4,8 @@ set -euo pipefail
 
 DRUPAL_ROOT=/opt/drupal/web
 
+composer install --no-interaction
+
 if [ ! -f "/opt/drupal/web/sites/default/settings.php" ]; then
 
     echo "Installing Drupal...\n"
@@ -14,11 +16,11 @@ if [ ! -f "/opt/drupal/web/sites/default/settings.php" ]; then
     drush --root=${DRUPAL_ROOT} cset cohesion.settings api_key ${COH_API_KEY} -y
     drush --root=${DRUPAL_ROOT} cset cohesion.settings organization_key ${COH_ORG_KEY} -y
 
-    chown -R www-data:www-data /opt/drupal/web/sites/default
-
     echo "Site Studio setup...\n"
     drush --root=${DRUPAL_ROOT} en sitestudio_uikit --debug -y -v
     drush --root=${DRUPAL_ROOT} cohesion:import -v
+
+    chown -R www-data:www-data /opt/drupal/web/sites/default
 
     drush --root=${DRUPAL_ROOT} status
 fi
