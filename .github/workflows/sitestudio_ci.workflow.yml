@@ -29,8 +29,6 @@ jobs:
           COH_ORG_KEY: ${{ secrets.COH_ORG_KEY }}
           COH_API_URL: https://eu-development-api.sitestudio.acquia.com
           MYSQL_DATABASE: drupal
-          MYSQL_USER: drupal
-          MYSQL_PASSWORD: drupal
           MARIADB_ROOT_PASSWORD: ${{ secrets.MARIADB_ROOT_PASSWORD }}
           DRUPAL_USER: admin
           DRUPAL_PWD: admin

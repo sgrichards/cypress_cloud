@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Define run values and metrics placeholders.
-LOG_FORMAT="Source:$PIPELINE_ENV PHP:$PHP_VERSION SS:$COHESION_VERSION User:%Us System:%Ss Elapsed:%es CPU:%P Status:%x"
+LOG_FORMAT="Source:$PIPELINE_ENV DRUPAL:$DRUPAL_VERSION PHP:$PHP_VERSION SS:$COHESION_VERSION User:%Us System:%Ss Elapsed:%es CPU:%P Status:%x"
 
 timestamp() {
   date +"Timestamp:%Y-%m-%d %T"
