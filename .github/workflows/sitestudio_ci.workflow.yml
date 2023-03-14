@@ -40,4 +40,4 @@ jobs:
 
       - name: Run our scripts
         run: |
-          docker compose exec -T web bash ./run.sh
+          docker compose run --rm web bash ./run.sh
