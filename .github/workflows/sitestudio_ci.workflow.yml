@@ -42,3 +42,8 @@ jobs:
       - name: Run our scripts
         run: |
           docker compose exec -T web bash ./run.sh
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          spec: e2e/cypress/e2e/drupal.cy.js
