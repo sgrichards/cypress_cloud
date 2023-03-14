@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -uo pipefail
+set -euo pipefail
 
 # Define run values and metrics placeholders.
 LOG_FORMAT="Source:$PIPELINE_ENV PHP:$PHP_VERSION SS:$COHESION_VERSION User:%Us System:%Ss Elapsed:%es CPU:%P Status:%x"
