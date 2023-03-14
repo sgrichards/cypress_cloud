@@ -16,7 +16,7 @@ jobs:
         php-versions: ['8.0', '8.1']
         exclude:
           - drupal-core: '10'
-            node: '8.0'
+            php-versions: '8.0'
 
     steps:
       - uses: actions/checkout@v3
